@@ -6,7 +6,6 @@ class Application:
 
     def __init__(self):
         self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(60)
         self.vars = {}
 
     def open_home_page(self):
