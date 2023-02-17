@@ -12,10 +12,7 @@ class Application:
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
 
-    def open_home_page(self):
-        wd = self.driver
-        wd.get("http://localhost/addressbook/")
-        wd.set_window_size(1252, 714)
+
 
     def destroy(self):
         self.driver.quit()

@@ -6,9 +6,14 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
+    def open_home_page(self):
+        wd = self.app.driver
+        wd.get("http://localhost/addressbook")
+        wd.set_window_size(1252, 714)
+
     def login(self, username, password):
         wd = self.app.driver
-        self.app.open_home_page()
+        self.open_home_page()
         wd.find_element(By.NAME, "user").click()
         wd.find_element(By.NAME, "user").clear()
         wd.find_element(By.NAME, "user").send_keys(username)
