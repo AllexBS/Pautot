@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import time
 
 
 class SessionHelper:
@@ -6,14 +7,9 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
-    def open_home_page(self):
-        wd = self.app.driver
-        wd.get("http://localhost/addressbook")
-        wd.set_window_size(1252, 714)
-
     def login(self, username, password):
         wd = self.app.driver
-        self.open_home_page()
+        self.app.open_home_page()
         wd.find_element(By.NAME, "user").click()
         wd.find_element(By.NAME, "user").clear()
         wd.find_element(By.NAME, "user").send_keys(username)
@@ -24,4 +20,5 @@ class SessionHelper:
 
     def logout(self):
         wd = self.app.driver
-        wd.find_element(By.LINK_TEXT, "Logout").click()
+        wd.find_element(By.XPATH, "//a[contains(text(),\'Logout\')]").click()
+        time.sleep(0.25)
