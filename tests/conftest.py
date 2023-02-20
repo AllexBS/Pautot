@@ -5,6 +5,12 @@ from fixture.application import Application
 
 @pytest.fixture(scope="session")
 def app(request):
-    fixture = Application()
-    request.addfinalizer(fixture.destroy)
-    return fixture
+    fix = Application()
+    fix.session.login(username="admin", password="secret")
+
+    def fin():
+        fix.session.logout()
+        fix.destroy()
+
+    request.addfinalizer(fin)
+    return fix
